@@ -1,0 +1,276 @@
+        {% extends 'base.html' %}
+        {% load static %}
+        {% block content %}
+        {% load hitcount_tags %}
+
+        <section class="section first-section">
+            <div class="container-fluid">
+                <div class="masonry-blog clearfix">
+                  {% for obj in header1 %}
+                    <div class="first-slot">
+                        <div class="masonry-box post-media">
+                             <img src="{{ obj.image.url }}" alt="{{ obj.title }}" class="img-fluid">
+                             <div class="shadoweffect">
+                                <div class="shadow-desc">
+                                    <div class="blog-meta">
+                                    {% for cate in obj.category.all %}
+                                        <span class="bg-orange"><a href="{{ cate.get_absolute_url }}" title="">{{ cate.title }}</a></span>
+                                        {% endfor %}
+                                        <h4><a href="{{ obj.get_absolute_url }}" title="">{{ obj.title }}</a></h4>
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">{{ obj.date }}</a></small>
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">by {{ obj.author }}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end shadow-desc -->
+                            </div><!-- end shadow -->
+                        </div><!-- end post-media -->
+                    </div><!-- end first-side -->
+                    {% endfor %}
+
+                 {% for obj in header2 %}
+                    <div class="second-slot">
+                        <div class="masonry-box post-media">
+                             <img src="{{ obj.image.url }}" alt="" class="img-fluid">
+                             <div class="shadoweffect">
+                                <div class="shadow-desc">
+                                    <div class="blog-meta">
+                                      {% for cat in obj.category.all %}
+                                        <span class="bg-orange"><a href="{{ cat.get_absolute_url }}" title="">{{ cat.title }}</a></span>
+                                        {% endfor %}
+                                        <h4><a href="{{ obj.get_absolute_url }}" title="">Do not make mistakes when choosing web hosting</a></h4>
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">03 July, 2017</a></small>
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">by {{ obj.author }}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end shadow-desc -->
+                             </div><!-- end shadow -->
+                        </div><!-- end post-media -->
+                    </div><!-- end second-side -->
+                    {% endfor %}
+                </div><!-- end masonry -->
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-top clearfix">
+                                <h4 class="pull-left">Recent News <a href="#"><i class="fa fa-rss"></i></a></h4>
+                            </div><!-- end blog-top -->
+
+                            <div class="blog-list clearfix">
+
+                               {% for obj in post3 %}
+                                <div class="blog-box row">
+                                    <div class="col-md-4">
+                                        <div class="post-media">
+                                            <a href="{{ obj.get_absolute_url }}" title="">
+                                                <img src="{{ obj.image.url }}" alt="{{ obj.title }}" class="img-fluid">
+                                                <div class="hovereffect"></div>
+                                            </a>
+                                        </div><!-- end media -->
+                                    </div><!-- end col -->
+
+                                    <div class="blog-meta big-meta col-md-8">
+                                        <h4><a href="{{ obj.get_absolute_url }}" title="">{{ obj.title }}</a></h4>
+                                        <p>{{ obj.article|truncatechars:60 }}</p>
+                                        {% for cat in obj.post3.all %}
+                                        <small class="firstsmall"><a class="bg-orange" href="{{ cat.get_absolute_url }}" title="">{{ cat.title }}</a></small>
+                                        {% endfor %}
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">{{ obj.date }}</a></small>
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">by {{ obj.author }}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+                                <hr class="invis">
+
+                                {% endfor %}
+
+
+
+
+
+                                <hr class="invis">
+
+
+                                <div class="row">
+                                    <div class="col-lg-10 offset-lg-1">
+                                        <div class="banner-spot clearfix">
+                                            <div class="banner-img">
+                                                <img src="{% static 'upload/ooo.jpg' %}" alt="" class="img-fluid">
+                                            </div><!-- end banner-img -->
+                                        </div><!-- end banner -->
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+
+                                <hr class="invis">
+
+                                 {% for obj in post %}
+
+                                <div class="blog-box row">
+                                    <div class="col-md-4">
+                                        <div class="post-media">
+                                            <a href="{{ obj.get_absolute_url }}" title="">
+                                                <img src="{{ obj.image.url }}" alt="" class="img-fluid">
+                                                <div class="hovereffect"></div>
+                                            </a>
+                                        </div><!-- end media -->
+                                    </div><!-- end col -->
+
+                                    <div class="blog-meta big-meta col-md-8">
+                                        <h4><a href="{{ obj.get_absolute_url }}" title="">{{ obj.title }}</a></h4>
+                                        <p>{{ obj.article|truncatechars:60 }}</p>
+                                        {% for cat in obj.category.all %}
+                                        <small class="firstsmall"><a class="bg-orange" href="{{ cat.get_absolute_url }}" title="">{{ cat.title }}</a></small>
+                                        {% endfor %}
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">{{ obj.date }}</a></small>
+                                        <small><a href="{{ obj.get_absolute_url }}" title="">by {{ obj.author }}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+
+                                <hr class="invis">
+
+                                {% endfor %}
+
+
+
+
+
+
+                            </div><!-- end blog-list -->
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis">
+                        {% if post.has_other_pages %}
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-start">
+                                        {% if post.has_previous %}
+                                      <li class="page-item">
+                                          <a class="page-link" href="?{{ page_request_var }}={{ post.previous_page_number }}">Previous</a>
+                                      </li>
+                                      {% endif %}
+
+                                      <li class="page-item"><a class="page-link" href="#">{{ post.number }}</a></li>
+                                        {% if post.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?{{ page_request_var }}={{ post.next_page_number }}">Next</a>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </nav>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                        {% endif %}
+
+
+                    </div><!-- end col -->
+
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="{% static 'upload/qwqw.png' %}" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <h2 class="widget-title">Trend Videos</h2>
+                                <div class="trend-videos">
+                                  {% for obj in video %}
+                                    <div class="blog-box">
+                                        <div class="post-media">
+                                            <a href="{{ obj.get_absolute_url }}" title="" >
+                                                <img src="{{ obj.image.url }}" alt="" class="img-fluid" style="width:800px; height:200px;" >
+                                                <div class="hovereffect">
+                                                    <span class="videohover"></span>
+                                                </div><!-- end hover -->
+                                            </a>
+                                        </div><!-- end media -->
+                                        <div class="blog-meta">
+                                            <h4><a href="{{ obj.get_absolute_url }}" title="">{{ obj.title|truncatechars:30 }}</a></h4>
+                                        </div><!-- end meta -->
+                                    </div><!-- end blog-box -->
+
+                                    <hr class="invis">
+                                    {% endfor %}
+
+
+
+
+
+                                </div><!-- end videos -->
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <h2 class="widget-title">Popular Posts</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+
+                                    {% for obj in recent %}
+                                        <a href="{{ obj.get_absolute_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="w-100 last-item justify-content-between">
+                                                <img src="{{ obj.image.url }}" alt="" class="img-fluid float-left">
+                                                <h5 class="mb-1">{{ obj.title|truncatechars:30 }}</h5>
+                                                <small>{{ obj.date|date }}</small>
+                                            </div>
+                                        </a>
+
+                                      {% endfor %}
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+
+
+
+                            <div class="widget">
+                                <h2 class="widget-title">Follow Us</h2>
+
+                                <div class="row text-center">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button facebook-button">
+                                            <i class="fa fa-facebook"></i>
+                                            <p>27k</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button twitter-button">
+                                            <i class="fa fa-twitter"></i>
+                                            <p>98k</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button google-button">
+                                            <i class="fa fa-google-plus"></i>
+                                            <p>17k</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button youtube-button">
+                                            <i class="fa fa-youtube"></i>
+                                            <p>22k</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="{% static 'upload/banner_03.jpg' %}" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+        {% endblock %}

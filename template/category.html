@@ -1,0 +1,200 @@
+        {% extends 'base.html' %}
+        {% load static %}
+        {% block content %}
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-gears bg-orange"></i> {{ d.title }} <small class="hidden-xs-down hidden-sm-down"> </small></h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="">Blog</a></li>
+                            <li class="breadcrumb-item active">{{ d.title }}</li>
+                        </ol>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="{% static 'upload/qwqw.png' %}" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <h2 class="widget-title">Trend Videos</h2>
+                                <div class="trend-videos">
+                                  {% for obj in video %}
+                                    <div class="blog-box">
+                                        <div class="post-media">
+                                            <a href="{{ obj.get_absolute_url }}" title="">
+                                                <img src="{{ obj.image.url }}" alt="" class="img-fluid"  style="width:800px; height:200px;">
+                                                <div class="hovereffect">
+                                                    <span class="videohover"></span>
+                                                </div><!-- end hover -->
+                                            </a>
+                                        </div><!-- end media -->
+                                        <div class="blog-meta">
+                                            <h4><a href="{{ obj.get_absolute_url }}" title="">{{ obj.title|truncatechars:30 }}</a></h4>
+                                        </div><!-- end meta -->
+                                    </div><!-- end blog-box -->
+
+                                    <hr class="invis">
+                                    {% endfor %}
+
+
+
+
+                                </div><!-- end videos -->
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <h2 class="widget-title">Popular Posts</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+                                      {% for obj in news %}
+                                        <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="w-100 justify-content-between">
+                                                <img src="{{ obj.image.url }}" alt="" class="img-fluid float-left">
+                                                <h5 class="mb-1">{{ obj.title|truncatechars:30 }}</h5>
+                                                <small>{{ obj.date|date }}</small>
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+
+
+                            <div class="widget">
+                                <h2 class="widget-title">Follow Us</h2>
+
+                                <div class="row text-center">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button facebook-button">
+                                            <i class="fa fa-facebook"></i>
+                                            <p>27k</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button twitter-button">
+                                            <i class="fa fa-twitter"></i>
+                                            <p>98k</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button google-button">
+                                            <i class="fa fa-google-plus"></i>
+                                            <p>17k</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button youtube-button">
+                                            <i class="fa fa-youtube"></i>
+                                            <p>22k</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="{% static 'upload/banner_03.jpg' %}" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-grid-system">
+                                <div class="row">
+                                  {% for obj in cate %}
+                                    <div class="col-md-6">
+                                        <div class="blog-box">
+                                            <div class="post-media">
+                                                <a href="{{ obj.get_absolute_url }}" title="">
+                                                    <img src="{{ obj.image.url }}" alt="" class="img-fluid" style="width:800px; height:310px;">
+                                                    <div class="hovereffect">
+                                                        <span></span>
+                                                    </div><!-- end hover -->
+                                                </a>
+                                            </div><!-- end media -->
+                                            <div class="blog-meta big-meta">
+                                              {% for cat in obj.category.all %}
+                                                <span class="color-orange"><a href="{{ cat.get_absolute_url }}" title="">{{ cat.title }}</a></span>
+                                                {% endfor %}
+                                                <h4><a href="{{ obj.get_absolute_url }}" title="">{{ obj.title }}</a></h4>
+                                                <p>{{ obj.article|truncatechars:60 }}</p>
+                                                <small><a href="" title="">{{ obj.date}}</a></small>
+                                                <small><a href="" title="">by {{ obj.author }}</a></small>
+                                                <small><a href="" title=""><i class="fa fa-eye"></i> 2887</a></small>
+                                            </div><!-- end meta -->
+                                        </div><!-- end blog-box -->
+                                    </div><!-- end col -->
+                                    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+                                </div><!-- end row -->
+                            </div><!-- end blog-grid-system -->
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis3">
+                    {% if cate.has_other_pages %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-start">
+                                        {% if cate.has_previous %}
+                                      <li class="page-item">
+                                          <a class="page-link" href="?{{ page_request_var }}={{ cate.previous_page_number }}">Previous</a>
+                                      </li>
+                                      {% endif %}
+
+                                      <li class="page-item"><a class="page-link" href="#">{{ cate.number }}</a></li>
+                                        {% if cate.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?{{ page_request_var }}={{ cate.next_page_number }}">Next</a>
+                                        </li>
+                                        {% endif %}
+
+                                    </ul>
+                                </nav>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                        {% endif %}
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+
+        {% endblock %}
